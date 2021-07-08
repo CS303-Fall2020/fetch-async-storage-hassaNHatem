@@ -1,0 +1,35 @@
+import React from "react";
+import { StyleSheet, FlatList } from "react-native";
+import * as firebase from 'firebase'
+import Username from '../../Username'
+import ListItem from "../ListItem/ListItem";
+
+const placeList = props => {
+ 
+  return (
+    <FlatList
+      style={styles.listContainer}
+      data={props.places}
+      renderItem={(info) => (
+        <ListItem
+          placeName={info.item.name}
+          placeImage={info.item.image}
+          title = {info.item.title}
+          
+          key = {info.item.key}
+          onItemPressed={() =>{ props.onItemSelected(info.item.key)
+          
+          }}
+        />
+      )}
+    />
+  );
+};
+
+const styles = StyleSheet.create({
+  listContainer: {
+    width: "100%"
+  }
+});
+
+export default placeList;
